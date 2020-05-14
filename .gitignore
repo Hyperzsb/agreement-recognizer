@@ -6,6 +6,8 @@ data/
 # Pcap file
 pcap/
 *.pcap
+# Train result file
+result/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
