@@ -1,4 +1,5 @@
 import configparser
+import os
 
 
 class Config:
@@ -9,8 +10,8 @@ class Config:
 
     def __init__(self):
         self.__config = configparser.ConfigParser()
-        self.__config.read('config.ini')
-        self.batch_size = self.__config['train']['batch_size']
+        path = '/'.join((os.path.abspath(__file__).replace('\\', '/')).split('/')[:-1])
+        self.__config.read(os.path.join(path, 'config.ini'))
+        self.batch_size = self.__config.get('train', 'batch_size')
         self.epoch = self.__config['train']['epoch']
         self.lr = self.__config['train']['learning_rate']
-

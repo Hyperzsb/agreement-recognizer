@@ -9,8 +9,11 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
-def train(dataset_path, saving_path):
+def train(dataset_path: str, saving_path: str):
     """
+    :param dataset_path: dataset file path
+    :param saving_path: training result file saving path
+
     Train the CNN model with dataset specified, output the training result and trained model
     """
 
@@ -31,7 +34,7 @@ def train(dataset_path, saving_path):
     # Define optimizer
     optimizer = torch.optim.Adam(cnn.parameters(), lr=lr, betas=(0.9, 0.999))
     # Define loss function
-    loss = nn.CrossEntropyLoss()
+    loss_fun = nn.CrossEntropyLoss()
     loss_count = []
 
     # Start training
@@ -50,7 +53,7 @@ def train(dataset_path, saving_path):
                 # Clear previous grad
                 optimizer.zero_grad()
                 # Get loss
-                loss = loss(output, y)
+                loss = loss_fun(output, y)
                 # Loss backward
                 loss.backward()
                 iter_loss = loss.item()
